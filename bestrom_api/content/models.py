@@ -29,7 +29,7 @@ class Block(models.Model):
 
 class ContFile(models.Model):
     alt = models.CharField(verbose_name='тэг Alt', max_length=100, null=True)
-    file = models.FileField(verbose_name='Файл', upload_to='content', blank=True)
+    file = models.FileField(verbose_name='Файл', upload_to='content/files', blank=True)
 
     def __str__(self):
         return self.alt
