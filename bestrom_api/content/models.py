@@ -1,3 +1,5 @@
+import datetime
+
 from django.db import models
 
 
@@ -52,3 +54,63 @@ class Content(models.Model):
         verbose_name_plural = 'Контент'
         verbose_name = 'Контент'
 
+
+class Partner(models.Model):
+    name = models.CharField(max_length=100, verbose_name='Наименование партнера',null=True)
+    logo=models.ImageField(upload_to='content/files/partner',verbose_name='Логотип',null=True,blank=True)
+    description = models.TextField(verbose_name='Описание', null=True,blank=True)
+    alt = models.CharField(max_length=100, verbose_name='Тэг alt', null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = 'Партнеры'
+        verbose_name = 'Партнер'
+
+
+class Client(models.Model):
+    name = models.CharField(max_length=100, verbose_name='Наименование клиента', null=True)
+    logo = models.ImageField(upload_to='content/files/clients', verbose_name='Логотип', null=True, blank=True)
+    description = models.TextField(verbose_name='Описание', null=True, blank=True)
+    alt = models.CharField(max_length=100, verbose_name='Тэг alt', null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = 'Клиенты'
+        verbose_name = 'Клиент'
+
+
+class News(models.Model):
+    name = models.CharField(max_length=256, verbose_name='Заголовок новости', null=True)
+    img = models.ImageField(upload_to='content/files/partner', verbose_name='Изображение', null=True, blank=True)
+    alt = models.CharField(max_length=100, verbose_name='Тэг alt', null=True, blank=True)
+    mini_description = models.TextField(verbose_name='Краткое содержание', null=True, blank=True)
+    description = models.TextField(verbose_name='Текст', null=True, blank=True)
+    published=models.DateTimeField(default=datetime.datetime.now(),verbose_name='Время публикации')
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = 'Партнеры'
+        verbose_name = 'Партнер'
+
+
+class Vacancy(models.Model):
+    name = models.CharField(max_length=256, verbose_name='Наименование вакансии', null=True)
+    requirements=models.TextField(verbose_name='Требования', blank=True,null=True)
+    skills=models.TextField(verbose_name='Навыки',blank=True,null=True)
+    salary=models.CharField(max_length=100, verbose_name='Зарплата', blank=True,null=True)
+    education=models.CharField(max_length=100,verbose_name='Образование', blank=True,null=True)
+    experience=models.CharField(max_length=100,verbose_name='Опыт работы', blank=True,null=True)
+    youget=models.TextField(verbose_name='Вы получаете', blank=True,null=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = 'Вакансии'
+        verbose_name = 'Вакансия'

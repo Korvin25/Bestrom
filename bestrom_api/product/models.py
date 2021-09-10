@@ -68,6 +68,7 @@ class Items(models.Model):
     name = models.CharField(max_length=100, verbose_name='Наименование продукта для работы')
     product=models.ManyToManyField(Product, related_name='Items',blank=True)
     img = models.ImageField(upload_to='product/files/items', verbose_name='Изображение')
+    alt = models.CharField(max_length=100, verbose_name='Тэг alt', null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -81,6 +82,7 @@ class ItemsExample(models.Model):
     name = models.CharField(max_length=100, verbose_name='Наименование примера продукта')
     items=models.ForeignKey(Items,on_delete=models.CASCADE, related_name='ItemsExample', verbose_name='Примеры продуктов')
     img=models.ImageField(upload_to='product/files/items_example', verbose_name='Изображение')
+    alt = models.CharField(max_length=100, verbose_name='Тэг alt', null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -94,6 +96,7 @@ class Equipment(models.Model):
     name = models.CharField(max_length=100, verbose_name='Наименование оборудования')
     product=models.ManyToManyField(Product, related_name='Equipment', verbose_name='Товар')
     img=models.ImageField(upload_to='product/files/equipment', verbose_name='Изображение')
+    alt = models.CharField(max_length=100, verbose_name='Тэг alt', null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -107,6 +110,7 @@ class Solution(models.Model):
     name = models.CharField(max_length=100, verbose_name='Наименование решения')
     product=models.ForeignKey(Product, related_name='Solution',on_delete=models.CASCADE, verbose_name='Товар')
     img=models.ImageField(upload_to='product/files/solution', verbose_name='Изображение')
+    alt = models.CharField(max_length=100, verbose_name='Тэг alt', null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -114,3 +118,5 @@ class Solution(models.Model):
     class Meta:
         verbose_name_plural = 'Готовые решения'
         verbose_name = 'Готовое решение'
+
+
