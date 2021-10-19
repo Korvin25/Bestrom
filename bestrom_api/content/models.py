@@ -3,7 +3,6 @@ import datetime
 from django.db import models
 
 
-# Create your models here.
 class Page(models.Model):
     title = models.CharField(verbose_name='Title страницы', max_length=256, null=True)
     description = models.CharField(verbose_name='Description страницы', max_length=512, null=True, blank=True)

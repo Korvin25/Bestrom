@@ -15,9 +15,16 @@ class BlockSerializer(serializers.ModelSerializer):
 
 
 class FileSerializer(serializers.ModelSerializer):
+    file_url = serializers.SerializerMethodField()
+
     class Meta:
         model = ContFile
         fields = '__all__'
+
+    def get_file_url(self, file):
+        request = self.context.get('request')
+        file_url = file.photo.url
+        return request.build_absolute_uri(file_url)
 
 
 class ContentSerializer(serializers.ModelSerializer):
@@ -49,7 +56,6 @@ class GetPageSerializer(serializers.ModelSerializer):
         depth = 1
         model = Page
         fields = '__all__'
-
 
 # остальной контент
 
