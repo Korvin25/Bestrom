@@ -100,6 +100,7 @@ class News(models.Model):
 
 class Vacancy(models.Model):
     name = models.CharField(max_length=256, verbose_name='Наименование вакансии', null=True)
+    img=models.ImageField(upload_to='content/files/vacancy', verbose_name='Изображение', null=True, blank=True)
     requirements=models.TextField(verbose_name='Требования', blank=True,null=True)
     skills=models.TextField(verbose_name='Навыки',blank=True,null=True)
     salary=models.CharField(max_length=100, verbose_name='Зарплата', blank=True,null=True)
