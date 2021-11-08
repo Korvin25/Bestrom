@@ -6,6 +6,6 @@ urlpatterns = [
     path('news/', views.GetNews.as_view()),
     path('client/', views.GetClient.as_view()),
     path('partner/', views.GetPartner.as_view()),
-    path('vacancy/', views.GetNews.as_view()),
+    path('vacancy/', views.GetVacancy.as_view()),
     path('history/', views.GetHistory.as_view()),
 ]
