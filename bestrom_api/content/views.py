@@ -34,3 +34,7 @@ class GetClient(generics.ListAPIView):
 class GetPartner(generics.ListAPIView):
     queryset = models.Partner.objects.all()
     serializer_class = serializers.GetPartnerSerializer
+
+class GetPartner(generics.ListAPIView):
+    queryset = models.History.objects.all()
+    serializer_class = serializers.GetHistorySerializer

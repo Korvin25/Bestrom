@@ -113,3 +113,16 @@ class Vacancy(models.Model):
     class Meta:
         verbose_name_plural = 'Вакансии'
         verbose_name = 'Вакансия'
+
+
+class History(models.Model):
+    year=models.IntegerField(verbose_name='Год', default=1900)
+    description=models.TextField(verbose_name='Описание', null=True, blank=True)
+    img=models.FileField(verbose_name='Изображение', null=True, blank=True, upload_to='content/files/history')
+
+    def __str__(self):
+        return str(self.year)
+
+    class Meta:
+        verbose_name_plural = 'Года'
+        verbose_name = 'Год'

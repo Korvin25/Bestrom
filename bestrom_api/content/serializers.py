@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Page, Block, Content, ContFile, News, Vacancy, Client, Partner
+from .models import *
 
 
 class PageSerializer(serializers.ModelSerializer):
@@ -80,4 +80,10 @@ class GetClientSerializer(serializers.ModelSerializer):
 class GetPartnerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Partner
+        fields = '__all__'
+
+
+class GetHistorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = History
         fields = '__all__'
