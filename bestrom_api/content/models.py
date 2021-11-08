@@ -85,7 +85,7 @@ class Client(models.Model):
 class News(models.Model):
     name = models.CharField(max_length=256, verbose_name='Заголовок новости', null=True)
     img = models.ImageField(upload_to='content/files/partner', verbose_name='Изображение', null=True, blank=True)
-    alt = models.CharField(max_length=100, verbose_name='Тэг alt', null=True, blank=True)
+    alt = models.CharField(max_length=100, verbose_name='Тэг alt', null=True, unique=True)
     mini_description = models.TextField(verbose_name='Краткое содержание', null=True, blank=True)
     description = models.TextField(verbose_name='Текст', null=True, blank=True)
     published=models.DateTimeField(default=datetime.datetime.now(),verbose_name='Время публикации')
@@ -101,6 +101,7 @@ class News(models.Model):
 class Vacancy(models.Model):
     name = models.CharField(max_length=256, verbose_name='Наименование вакансии', null=True)
     img=models.ImageField(upload_to='content/files/vacancy', verbose_name='Изображение', null=True, blank=True)
+    alt = models.CharField(max_length=100, verbose_name='Тэг alt', null=True, unique=True)
     requirements=models.TextField(verbose_name='Требования', blank=True,null=True)
     skills=models.TextField(verbose_name='Навыки',blank=True,null=True)
     salary=models.CharField(max_length=100, verbose_name='Зарплата', blank=True,null=True)
