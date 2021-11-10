@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Product, ProductProperties, ProductPropertyValue, SliderProd, Items, Equipment, \
+from .models import Product, ProductProperties, ProductPropertyValue, SliderProd, Items, ItemsExample, Equipment, \
     Solution, Docs
 
 
@@ -52,7 +52,7 @@ class SolutionSerializer(serializers.ModelSerializer):
 
 class ItemsExampleSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Items
+        model = ItemsExample
         fields = '__all__'
 
 
