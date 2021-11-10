@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from .models import Product, ProductProperties, ProductPropertyValue, SliderProd, Items, ItemsExample, Equipment, \
+
+from .models import Product, ProductProperties, ProductPropertyValue, SliderProd, Items, Equipment, \
     Solution, Docs
 
 
@@ -49,7 +50,15 @@ class SolutionSerializer(serializers.ModelSerializer):
         exclude = ('product',)
 
 
+class ItemsExampleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Items
+        exclude = ('items',)
+
+
 class ItemSerializer(serializers.ModelSerializer):
+    ItemsExample = ItemsExampleSerializer(many=True)
+
     class Meta:
         model = Items
         exclude = ('product',)
