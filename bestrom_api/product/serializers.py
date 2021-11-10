@@ -53,7 +53,7 @@ class SolutionSerializer(serializers.ModelSerializer):
 class ItemsExampleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Items
-        exclude = ('items',)
+        fields = '__all__'
 
 
 class ItemSerializer(serializers.ModelSerializer):
