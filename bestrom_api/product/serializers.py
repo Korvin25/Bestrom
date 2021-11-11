@@ -1,7 +1,6 @@
 from rest_framework import serializers
 
-from .models import Product, ProductProperties, ProductPropertyValue, SliderProd, Items, ItemsExample, Equipment, \
-    Solution, Docs
+from .models import *
 
 
 # для списка товаров
@@ -62,6 +61,20 @@ class ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Items
         exclude = ('product',)
+
+
+class FilterSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Filters
+        fields = '__all__'
+
+
+class CategoryFilterSerializer(serializers.ModelSerializer):
+    Filters = FilterSerializer(many=True)
+
+    class Meta:
+        model = CategoryFilters
+        fields = '__all__'
 
 
 class DetailProductSerializer(serializers.ModelSerializer):

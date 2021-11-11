@@ -1,6 +1,7 @@
+from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework import generics
+
 from . import models
 from . import serializers
 
@@ -35,6 +36,9 @@ class GetPartner(generics.ListAPIView):
     queryset = models.Partner.objects.all()
     serializer_class = serializers.GetPartnerSerializer
 
+
 class GetHistory(generics.ListAPIView):
     queryset = models.History.objects.all()
     serializer_class = serializers.GetHistorySerializer
+
+
