@@ -21,5 +21,5 @@ class GetDetailProduct(APIView):
 
 
 class GetFilters(generics.ListAPIView):
-    queryset = models.CategoryFilter.objects.all()
+    queryset = models.CategoryFilters.objects.all()
     serializer_class = serializers.CategoryFilterSerializer
