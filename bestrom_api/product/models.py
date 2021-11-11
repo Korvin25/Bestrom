@@ -141,5 +141,5 @@ class Filters(models.Model):
         return self.name
 
     class Meta:
-        verbose_name_plural = 'Категории фильтров'
-        verbose_name = 'Категория фильтра'
+        verbose_name_plural = 'Фильтры'
+        verbose_name = 'Фильтр'
