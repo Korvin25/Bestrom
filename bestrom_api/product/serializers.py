@@ -64,8 +64,6 @@ class ItemSerializer(serializers.ModelSerializer):
 
 
 class FilterSerializer(serializers.ModelSerializer):
-    prop = PropertySerializer(many=True)
-
     class Meta:
         model = Filters
         fields = '__all__'
