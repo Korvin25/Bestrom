@@ -134,7 +134,7 @@ class CategoryFilters(models.Model):
 
 
 class Filters(models.Model):
-    propvalue = models.ForeignKey(ProductPropertyValue, verbose_name='Значение характеристики',
+    prop = models.ForeignKey(ProductProperties, verbose_name='Значение характеристики',
                                   on_delete=models.CASCADE, null=True)
     cat = models.ForeignKey(CategoryFilters, verbose_name='Категория', on_delete=models.CASCADE, related_name='Filters')
     name = models.CharField(max_length=100, verbose_name='Наименование фильтра')

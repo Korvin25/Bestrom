@@ -64,7 +64,7 @@ class ItemSerializer(serializers.ModelSerializer):
 
 
 class FilterSerializer(serializers.ModelSerializer):
-    propvalue = PropertyValueSerializer(many=True)
+    prop = PropertySerializer(many=True)
 
     class Meta:
         model = Filters
