@@ -136,7 +136,7 @@ class CategoryFilters(models.Model):
 class Filters(models.Model):
     cat = models.ForeignKey(CategoryFilters, verbose_name='Категория', on_delete=models.CASCADE, related_name='Filters')
     name = models.CharField(max_length=100, verbose_name='Наименование фильтра', null=True)
-    search = models.ForeignKey(max_length=100, verbose_name='Поисковый запрос', null=True)
+    search = models.CharField(max_length=100, verbose_name='Поисковый запрос', null=True)
 
     def __str__(self):
         return self.name
