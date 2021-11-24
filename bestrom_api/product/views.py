@@ -9,7 +9,7 @@ from . import serializers
 class GetListProduct(APIView):
     def get(self, request, format=None):
         queryset = models.Product.objects.all()
-        serializer = serializers.ListProductSerializer(queryset, many=True)
+        serializer = serializers.DetailProductSerializer(queryset, many=True)
         return Response(serializer.data)
 
 
