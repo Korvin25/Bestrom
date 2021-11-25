@@ -5,7 +5,7 @@ from content.models import Client
 class Product(models.Model):
     name = models.CharField(max_length=100, verbose_name='Наименование товара', null=True)
     description = models.CharField(max_length=100, verbose_name='Описание товара', null=True, blank=True)
-    clients = models.ManyToManyField(Client, verbose_name='Клиенты купившие товар', null=True, blank=True)
+    clients = models.ManyToManyField(Client, related_name='Product', verbose_name='Клиенты купившие товар', null=True, blank=True)
 
     def __str__(self):
         return self.name

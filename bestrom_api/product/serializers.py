@@ -102,6 +102,7 @@ class DetailProductSerializer(serializers.ModelSerializer):
     Docs = DocSerializer(many=True)
     Equipment = EquipmentSerializer(many=True)
     Solution = SolutionSerializer(many=True)
+    Packet = PacketSerializer(many=True)
 
     class Meta:
         depth = 1
