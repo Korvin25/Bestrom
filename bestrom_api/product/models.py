@@ -44,7 +44,7 @@ class ProductProperties(models.Model):
 class ProductPropertyValue(models.Model):
     product = models.ForeignKey(Product, related_name='ProductPropertyValue', on_delete=models.CASCADE)
     product_property = models.ForeignKey(ProductProperties, related_name='PropertyValue', on_delete=models.CASCADE)
-    value = models.CharField(max_length=100, verbose_name='Значение характеристики', null=True)
+    name = models.CharField(max_length=100, verbose_name='Значение характеристики', null=True)
 
     def __str__(self):
         return str(self.product.name) + ' ' + str(self.product_property.name)
@@ -126,6 +126,7 @@ class Solution(models.Model):
 
 class CategoryFilters(models.Model):
     name = models.CharField(max_length=100, verbose_name='Наименование категории')
+    img = models.ImageField(verbose_name='Изображение', upload_to='product/files/filters', null=True, blank=True)
 
     def __str__(self):
         return self.name
