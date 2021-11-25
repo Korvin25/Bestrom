@@ -151,7 +151,7 @@ class Filters(models.Model):
 
 class Packet(models.Model):
     name = models.CharField(max_length=100, verbose_name='Наименование пакета')
-    product = models.ManyToManyField(Product, related_name='Packet', on_delete=models.CASCADE, verbose_name='Товар')
+    product = models.ManyToManyField(Product, related_name='Packet', verbose_name='Товар')
     img = models.ImageField(upload_to='product/files/packet', verbose_name='Изображение')
     drawing = models.ImageField(upload_to='product/files/packet/drawing', verbose_name='Изображение')
     alt = models.CharField(max_length=100, verbose_name='Тэг alt', null=True, blank=True)
@@ -165,7 +165,7 @@ class Packet(models.Model):
 
 class PacketOptions(models.Model):
     name = models.CharField(max_length=100, verbose_name='Опции пакета')
-    packet = models.ManyToManyField(Packet, related_name='Options', on_delete=models.CASCADE, verbose_name='Товар')
+    packet = models.ManyToManyField(Packet, related_name='Options', verbose_name='Товар')
     img = models.ImageField(upload_to='product/files/packet/options', verbose_name='Изображение')
     alt = models.CharField(max_length=100, verbose_name='Тэг alt', null=True, blank=True)
 
@@ -179,7 +179,7 @@ class PacketOptions(models.Model):
 
 class PacketSeam(models.Model):
     name = models.CharField(max_length=100, verbose_name='Тип шва')
-    packet = models.ManyToManyField(Packet, related_name='Seam', on_delete=models.CASCADE, verbose_name='Товар')
+    packet = models.ManyToManyField(Packet, related_name='Seam', verbose_name='Товар')
     img = models.ImageField(upload_to='product/files/packet/seam', verbose_name='Изображение')
     alt = models.CharField(max_length=100, verbose_name='Тэг alt', null=True, blank=True)
 
