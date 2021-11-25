@@ -23,3 +23,18 @@ class GetDetailProduct(APIView):
 class GetFilters(generics.ListAPIView):
     queryset = models.CategoryFilters.objects.all()
     serializer_class = serializers.CategoryFilterSerializer
+
+
+class GetPacket(generics.ListAPIView):
+    queryset = models.Packet.objects.all()
+    serializer_class = serializers.PacketSerializer
+
+
+class GetPacketOptions(generics.ListAPIView):
+    queryset = models.PacketOptions.objects.all()
+    serializer_class = serializers.PacketOptionsSerializer
+
+
+class GetPacketSeam(generics.ListAPIView):
+    queryset = models.PacketSeam.objects.all()
+    serializer_class = serializers.PacketSeamSerializer

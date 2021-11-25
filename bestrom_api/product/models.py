@@ -146,3 +146,45 @@ class Filters(models.Model):
     class Meta:
         verbose_name_plural = 'Фильтры'
         verbose_name = 'Фильтр'
+
+
+class Packet(models.Model):
+    name = models.CharField(max_length=100, verbose_name='Наименование пакета')
+    product = models.ManyToManyField(Product, related_name='Packet', on_delete=models.CASCADE, verbose_name='Товар')
+    img = models.ImageField(upload_to='product/files/packet', verbose_name='Изображение')
+    drawing = models.ImageField(upload_to='product/files/packet/drawing', verbose_name='Изображение')
+    alt = models.CharField(max_length=100, verbose_name='Тэг alt', null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = 'Пакеты'
+        verbose_name = 'Пакет'
+
+class PacketOptions(models.Model):
+    name = models.CharField(max_length=100, verbose_name='Опции пакета')
+    packet = models.ManyToManyField(Packet, related_name='Options', on_delete=models.CASCADE, verbose_name='Товар')
+    img = models.ImageField(upload_to='product/files/packet/options', verbose_name='Изображение')
+    alt = models.CharField(max_length=100, verbose_name='Тэг alt', null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = 'Опции пакетов'
+        verbose_name = 'Опция пакета'
+
+
+class PacketSeam(models.Model):
+    name = models.CharField(max_length=100, verbose_name='Тип шва')
+    packet = models.ManyToManyField(Packet, related_name='Seam', on_delete=models.CASCADE, verbose_name='Товар')
+    img = models.ImageField(upload_to='product/files/packet/seam', verbose_name='Изображение')
+    alt = models.CharField(max_length=100, verbose_name='Тэг alt', null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = 'Типы швов'
+        verbose_name = 'Тип шва'
