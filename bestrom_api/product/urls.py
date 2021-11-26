@@ -7,5 +7,5 @@ urlpatterns = [
     # path('product/<int:pk>/', views.GetDetailProduct.as_view()),
     path('packets/', views.GetPacket.as_view()),
     path('packetoptions/', views.GetPacketOptions.as_view()),
-    path('packetseams/', views.GetPacketOptions.as_view()),
+    path('packetseams/', views.GetPacketSeam.as_view()),
 ]
