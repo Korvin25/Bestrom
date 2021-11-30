@@ -32,7 +32,7 @@ class SliderProd(models.Model):
 
 class ProductProperties(models.Model):
     name = models.CharField(max_length=100, verbose_name='Наименование характеристики')
-    name_en = models.CharField(max_length=100, verbose_name='Перевод')
+    name_en = models.CharField(max_length=100, verbose_name='Перевод', null=True)
     product = models.ManyToManyField(Product, verbose_name='Товар', related_name='ProductProperties',
                                      through='ProductPropertyValue')
 
