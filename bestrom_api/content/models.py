@@ -45,6 +45,7 @@ class Content(models.Model):
     block = models.ForeignKey(Block, on_delete=models.CASCADE,related_name='contents')
     file = models.ManyToManyField(ContFile, blank=True)
     text = models.TextField(verbose_name='Содержимое', null=True, blank=True)
+    text_en = models.TextField(verbose_name='Перевод', null=True, blank=True)
 
     def __str__(self):
         return str(self.block.page.title)+' '+str(self.block.name)+' '+str(self.name)
@@ -58,6 +59,7 @@ class Partner(models.Model):
     name = models.CharField(max_length=100, verbose_name='Наименование партнера',null=True)
     logo=models.ImageField(upload_to='content/files/partner',verbose_name='Логотип',null=True,blank=True)
     description = models.TextField(verbose_name='Описание', null=True,blank=True)
+    description_en = models.TextField(verbose_name='Перевод', null=True, blank=True)
     alt = models.CharField(max_length=100, verbose_name='Тэг alt', null=True, blank=True)
 
     def __str__(self):
@@ -72,6 +74,7 @@ class Client(models.Model):
     name = models.CharField(max_length=100, verbose_name='Наименование клиента', null=True)
     logo = models.ImageField(upload_to='content/files/clients', verbose_name='Логотип', null=True, blank=True)
     description = models.TextField(verbose_name='Описание', null=True, blank=True)
+    description_en = models.TextField(verbose_name='Перевод', null=True, blank=True)
     alt = models.CharField(max_length=100, verbose_name='Тэг alt', null=True, blank=True)
 
     def __str__(self):
@@ -87,7 +90,9 @@ class News(models.Model):
     img = models.ImageField(upload_to='content/files/partner', verbose_name='Изображение', null=True, blank=True)
     alt = models.CharField(max_length=100, verbose_name='Тэг alt', null=True, unique=True)
     mini_description = models.TextField(verbose_name='Краткое содержание', null=True, blank=True)
+    mini_description_en = models.TextField(verbose_name='Перевод содержания', null=True, blank=True)
     description = models.TextField(verbose_name='Текст', null=True, blank=True)
+    description_en = models.TextField(verbose_name='Перевод текста', null=True, blank=True)
     published=models.DateTimeField(default=datetime.datetime.now(),verbose_name='Время публикации')
 
     def __str__(self):
@@ -108,6 +113,7 @@ class Vacancy(models.Model):
     education=models.CharField(max_length=100,verbose_name='Образование', blank=True,null=True)
     experience=models.CharField(max_length=100,verbose_name='Опыт работы', blank=True,null=True)
     youget=models.TextField(verbose_name='Вы получаете', blank=True,null=True)
+    rus_ver=models.BooleanField(verbose_name='Русская версия', default=True)
 
     def __str__(self):
         return self.name
@@ -120,6 +126,7 @@ class Vacancy(models.Model):
 class History(models.Model):
     year=models.IntegerField(verbose_name='Год', default=1900)
     description=models.TextField(verbose_name='Описание', null=True, blank=True)
+    description_en = models.TextField(verbose_name='Перевод', null=True, blank=True)
     img=models.FileField(verbose_name='Изображение', null=True, blank=True, upload_to='content/files/history')
 
     def __str__(self):
