@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import *
+from product.serializers import DetailProductSerializer
 
 
 class PageSerializer(serializers.ModelSerializer):
@@ -57,6 +58,7 @@ class GetPageSerializer(serializers.ModelSerializer):
         model = Page
         fields = '__all__'
 
+
 # остальной контент
 
 class GetNewsSerializer(serializers.ModelSerializer):
@@ -72,6 +74,8 @@ class GetVacancySerializer(serializers.ModelSerializer):
 
 
 class GetClientSerializer(serializers.ModelSerializer):
+    Product = DetailProductSerializer(many=True)
+
     class Meta:
         model = Client
         fields = '__all__'

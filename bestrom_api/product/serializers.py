@@ -77,6 +77,24 @@ class CategoryFilterSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class PacketSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Packet
+        fields = '__all__'
+
+
+class PacketOptionsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PacketOptions
+        fields = '__all__'
+
+
+class PacketSeamSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PacketSeam
+        fields = '__all__'
+
+
 class DetailProductSerializer(serializers.ModelSerializer):
     ProductPropertyValue = PropertyValueSerializer(many=True)
     SliderProd = SliderSerializer(many=True)
@@ -84,6 +102,7 @@ class DetailProductSerializer(serializers.ModelSerializer):
     Docs = DocSerializer(many=True)
     Equipment = EquipmentSerializer(many=True)
     Solution = SolutionSerializer(many=True)
+    Packet = PacketSerializer(many=True)
 
     class Meta:
         depth = 1

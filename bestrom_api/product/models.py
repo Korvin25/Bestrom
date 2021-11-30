@@ -1,9 +1,11 @@
 from django.db import models
+from content.models import Client
 
 
 class Product(models.Model):
     name = models.CharField(max_length=100, verbose_name='Наименование товара', null=True)
     description = models.CharField(max_length=100, verbose_name='Описание товара', null=True, blank=True)
+    clients = models.ManyToManyField(Client, related_name='Product', verbose_name='Клиенты купившие товар', null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -42,7 +44,7 @@ class ProductProperties(models.Model):
 class ProductPropertyValue(models.Model):
     product = models.ForeignKey(Product, related_name='ProductPropertyValue', on_delete=models.CASCADE)
     product_property = models.ForeignKey(ProductProperties, related_name='PropertyValue', on_delete=models.CASCADE)
-    value = models.CharField(max_length=100, verbose_name='Значение характеристики', null=True)
+    name = models.CharField(max_length=100, verbose_name='Значение характеристики', null=True)
 
     def __str__(self):
         return str(self.product.name) + ' ' + str(self.product_property.name)
@@ -124,6 +126,7 @@ class Solution(models.Model):
 
 class CategoryFilters(models.Model):
     name = models.CharField(max_length=100, verbose_name='Наименование категории')
+    img = models.ImageField(verbose_name='Изображение', upload_to='product/files/filters', null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -144,3 +147,45 @@ class Filters(models.Model):
     class Meta:
         verbose_name_plural = 'Фильтры'
         verbose_name = 'Фильтр'
+
+
+class Packet(models.Model):
+    name = models.CharField(max_length=100, verbose_name='Наименование пакета')
+    product = models.ManyToManyField(Product, related_name='Packet', verbose_name='Товар')
+    img = models.ImageField(upload_to='product/files/packet', verbose_name='Изображение')
+    drawing = models.ImageField(upload_to='product/files/packet/drawing', verbose_name='Изображение')
+    alt = models.CharField(max_length=100, verbose_name='Тэг alt', null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = 'Пакеты'
+        verbose_name = 'Пакет'
+
+class PacketOptions(models.Model):
+    name = models.CharField(max_length=100, verbose_name='Опции пакета')
+    packet = models.ManyToManyField(Packet, related_name='Options', verbose_name='Товар')
+    img = models.ImageField(upload_to='product/files/packet/options', verbose_name='Изображение')
+    alt = models.CharField(max_length=100, verbose_name='Тэг alt', null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = 'Опции пакетов'
+        verbose_name = 'Опция пакета'
+
+
+class PacketSeam(models.Model):
+    name = models.CharField(max_length=100, verbose_name='Тип шва')
+    packet = models.ManyToManyField(Packet, related_name='Seam', verbose_name='Товар')
+    img = models.ImageField(upload_to='product/files/packet/seam', verbose_name='Изображение')
+    alt = models.CharField(max_length=100, verbose_name='Тэг alt', null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = 'Типы швов'
+        verbose_name = 'Тип шва'
