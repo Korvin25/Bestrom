@@ -4,7 +4,9 @@ from content.models import Client
 
 class Product(models.Model):
     name = models.CharField(max_length=100, verbose_name='Наименование товара', null=True)
-    description = models.CharField(max_length=100, verbose_name='Описание товара', null=True, blank=True)
+    name_en = models.CharField(max_length=100, verbose_name='Перевод наименования', null=True)
+    description = models.TextField(verbose_name='Описание товара', null=True, blank=True)
+    description_en = models.TextField(verbose_name='Перевод', null=True, blank=True)
     clients = models.ManyToManyField(Client, related_name='Product', verbose_name='Клиенты купившие товар', null=True, blank=True)
 
     def __str__(self):
@@ -30,6 +32,7 @@ class SliderProd(models.Model):
 
 class ProductProperties(models.Model):
     name = models.CharField(max_length=100, verbose_name='Наименование характеристики')
+    name_en = models.CharField(max_length=100, verbose_name='Перевод')
     product = models.ManyToManyField(Product, verbose_name='Товар', related_name='ProductProperties',
                                      through='ProductPropertyValue')
 
@@ -45,6 +48,7 @@ class ProductPropertyValue(models.Model):
     product = models.ForeignKey(Product, related_name='ProductPropertyValue', on_delete=models.CASCADE)
     product_property = models.ForeignKey(ProductProperties, related_name='PropertyValue', on_delete=models.CASCADE)
     name = models.CharField(max_length=100, verbose_name='Значение характеристики', null=True)
+    name_en = models.CharField(max_length=100, verbose_name='Перевод', null=True)
 
     def __str__(self):
         return str(self.product.name) + ' ' + str(self.product_property.name)
@@ -69,6 +73,7 @@ class Docs(models.Model):
 
 class Items(models.Model):
     name = models.CharField(max_length=100, verbose_name='Наименование продукта для работы')
+    name_en = models.CharField(max_length=100, verbose_name='Перевод', null=True)
     product = models.ManyToManyField(Product, related_name='Items', blank=True)
     img = models.ImageField(upload_to='product/files/items', verbose_name='Изображение')
     alt = models.CharField(max_length=100, verbose_name='Тэг alt', null=True, blank=True)
@@ -83,6 +88,7 @@ class Items(models.Model):
 
 class ItemsExample(models.Model):
     name = models.CharField(max_length=100, verbose_name='Наименование примера продукта')
+    name_en = models.CharField(max_length=100, verbose_name='Перевод', null=True)
     items = models.ForeignKey(Items, on_delete=models.CASCADE, related_name='ItemsExample',
                               verbose_name='Примеры продуктов')
     img = models.ImageField(upload_to='product/files/items_example', verbose_name='Изображение')
@@ -98,6 +104,7 @@ class ItemsExample(models.Model):
 
 class Equipment(models.Model):
     name = models.CharField(max_length=100, verbose_name='Наименование оборудования')
+    name_en = models.CharField(max_length=100, verbose_name='Перевод', null=True)
     product = models.ManyToManyField(Product, related_name='Equipment', verbose_name='Товар')
     img = models.ImageField(upload_to='product/files/equipment', verbose_name='Изображение')
     alt = models.CharField(max_length=100, verbose_name='Тэг alt', null=True, blank=True)
@@ -112,6 +119,7 @@ class Equipment(models.Model):
 
 class Solution(models.Model):
     name = models.CharField(max_length=100, verbose_name='Наименование решения')
+    name_en = models.CharField(max_length=100, verbose_name='Перевод', null=True)
     product = models.ForeignKey(Product, related_name='Solution', on_delete=models.CASCADE, verbose_name='Товар')
     img = models.ImageField(upload_to='product/files/solution', verbose_name='Изображение')
     alt = models.CharField(max_length=100, verbose_name='Тэг alt', null=True, blank=True)
@@ -126,6 +134,7 @@ class Solution(models.Model):
 
 class CategoryFilters(models.Model):
     name = models.CharField(max_length=100, verbose_name='Наименование категории')
+    name_en = models.CharField(max_length=100, verbose_name='Перевод', null=True)
     img = models.ImageField(verbose_name='Изображение', upload_to='product/files/filters', null=True, blank=True)
 
     def __str__(self):
@@ -139,6 +148,7 @@ class CategoryFilters(models.Model):
 class Filters(models.Model):
     cat = models.ForeignKey(CategoryFilters, verbose_name='Категория', on_delete=models.CASCADE, related_name='Filters')
     name = models.CharField(max_length=100, verbose_name='Наименование фильтра', null=True)
+    name_en = models.CharField(max_length=100, verbose_name='Перевод', null=True)
     search = models.CharField(max_length=100, verbose_name='Поисковый запрос', null=True)
 
     def __str__(self):
@@ -151,6 +161,7 @@ class Filters(models.Model):
 
 class Packet(models.Model):
     name = models.CharField(max_length=100, verbose_name='Наименование пакета')
+    name_en = models.CharField(max_length=100, verbose_name='Перевод', null=True)
     product = models.ManyToManyField(Product, related_name='Packet', verbose_name='Товар')
     img = models.ImageField(upload_to='product/files/packet', verbose_name='Изображение')
     drawing = models.ImageField(upload_to='product/files/packet/drawing', verbose_name='Изображение')
@@ -165,6 +176,7 @@ class Packet(models.Model):
 
 class PacketOptions(models.Model):
     name = models.CharField(max_length=100, verbose_name='Опции пакета')
+    name_en = models.CharField(max_length=100, verbose_name='Перевод', null=True)
     packet = models.ManyToManyField(Packet, related_name='Options', verbose_name='Товар')
     img = models.ImageField(upload_to='product/files/packet/options', verbose_name='Изображение')
     alt = models.CharField(max_length=100, verbose_name='Тэг alt', null=True, blank=True)
@@ -179,6 +191,7 @@ class PacketOptions(models.Model):
 
 class PacketSeam(models.Model):
     name = models.CharField(max_length=100, verbose_name='Тип шва')
+    name_en = models.CharField(max_length=100, verbose_name='Перевод', null=True)
     packet = models.ManyToManyField(Packet, related_name='Seam', verbose_name='Товар')
     img = models.ImageField(upload_to='product/files/packet/seam', verbose_name='Изображение')
     alt = models.CharField(max_length=100, verbose_name='Тэг alt', null=True, blank=True)
