@@ -5,6 +5,7 @@ from django.db import models
 
 class Page(models.Model):
     title = models.CharField(verbose_name='Title страницы', max_length=256, null=True)
+    title_en = models.CharField(verbose_name='Перевод title', max_length=256, null=True)
     description = models.CharField(verbose_name='Description страницы', max_length=512, null=True, blank=True)
     keywords = models.CharField(verbose_name='Keywords страницы', max_length=256, null=True, blank=True)
 
