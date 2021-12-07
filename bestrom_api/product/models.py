@@ -1,12 +1,12 @@
 from django.db import models
 from content.models import Client
-
+from ckeditor.fields import RichTextField
 
 class Product(models.Model):
     name = models.CharField(max_length=100, verbose_name='Наименование товара', null=True)
     name_en = models.CharField(max_length=100, verbose_name='Перевод наименования', null=True)
-    description = models.TextField(verbose_name='Описание товара', null=True, blank=True)
-    description_en = models.TextField(verbose_name='Перевод', null=True, blank=True)
+    description = RichTextField(verbose_name='Описание товара', null=True, blank=True)
+    description_en = RichTextField(verbose_name='Перевод', null=True, blank=True)
     clients = models.ManyToManyField(Client, related_name='Product', verbose_name='Клиенты купившие товар', null=True, blank=True)
 
     def __str__(self):
