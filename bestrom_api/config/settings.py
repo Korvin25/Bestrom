@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'drf_yasg',
     'content',
     'product',
-    'crm'
+    'crm',
+    'ckeditor'
 ]
 
 MIDDLEWARE = [
