@@ -12,6 +12,7 @@ class Crm_forms(models.Model):
     email = models.CharField(verbose_name='Почта', max_length=50, null=True, blank=True)
     name = models.CharField(verbose_name='Обращение', max_length=50, null=True, blank=True)
     other = models.TextField(verbose_name='Примечание',null=True, blank=True)
+    file = models.FileField(verbose_name='Файл', null=True, blank=True, upload_to='crm/')
 
     def __str__(self):
         return str(self.dateapp)
@@ -19,5 +20,5 @@ class Crm_forms(models.Model):
     def save(self, *args, **kwargs):
 
         send_mail('Заявка '+str(self.type)+' '+str(datetime.datetime.now()), str(self.name)+' '+str(self.telephone)+' '+str(self.email)+' '+str(self.other), settings.EMAIL_HOST_USER,
-                  ['ivan@adving.ru'], fail_silently=False)
+                  ['ivan@adving.ru','bexram33@mail.ru'], fail_silently=False)
         super().save(*args, **kwargs)
