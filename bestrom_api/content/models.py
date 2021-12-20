@@ -7,6 +7,7 @@ class Page(models.Model):
     title = models.CharField(verbose_name='Title страницы', max_length=256, null=True)
     title_en = models.CharField(verbose_name='Перевод title', max_length=256, null=True)
     description = models.CharField(verbose_name='Description страницы', max_length=512, null=True, blank=True)
+    description_en = models.CharField(verbose_name='Перевод Description страницы', max_length=512, null=True, blank=True)
     keywords = models.CharField(verbose_name='Keywords страницы', max_length=256, null=True, blank=True)
 
     def __str__(self):
@@ -45,7 +46,7 @@ class Content(models.Model):
     name = models.CharField(verbose_name='Название', max_length=1024, null=True)
     name_en = models.CharField(verbose_name='Перевод наименования', max_length=1024, null=True, blank=True)
     block = models.ForeignKey(Block, on_delete=models.CASCADE, related_name='contents')
-    file = models.ManyToManyField(ContFile, blank=True)
+    file = models.ManyToManyField(ContFile, verbose_name='Изображение', blank=True)
     text = models.TextField(verbose_name='Содержимое', null=True, blank=True)
     text_en = models.TextField(verbose_name='Перевод', null=True, blank=True)
 
@@ -136,5 +137,5 @@ class History(models.Model):
         return str(self.year)
 
     class Meta:
-        verbose_name_plural = 'Года'
+        verbose_name_plural = 'Карусель годов'
         verbose_name = 'Год'

@@ -19,8 +19,8 @@ class Product(models.Model):
 
 class SliderProd(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='SliderProd', verbose_name='Товар')
-    img = models.ImageField(verbose_name='Изображение', upload_to='product/files/slider', null=True, blank=True)
-    alt = models.CharField(max_length=100, verbose_name='Тэг alt', null=True, blank=True)
+    img = models.ImageField(verbose_name='Изображение', upload_to='product/files/slider', null=True)
+    alt = models.CharField(max_length=100, verbose_name='Тэг alt', null=True)
 
     def __str__(self):
         return self.alt

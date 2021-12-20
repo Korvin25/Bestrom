@@ -22,3 +22,7 @@ class Crm_forms(models.Model):
         send_mail('Заявка '+str(self.type)+' '+str(datetime.datetime.now()), str(self.name)+' '+str(self.telephone)+' '+str(self.email)+' '+str(self.other), settings.EMAIL_HOST_USER,
                   ['ivan@adving.ru','bexram33@mail.ru'], fail_silently=False)
         super().save(*args, **kwargs)
+
+    class Meta:
+        verbose_name_plural = 'Заявки-обращения'
+        verbose_name = 'Заявка-обращение'
