@@ -46,7 +46,7 @@ class ContFile(models.Model):
 class Content(models.Model):
     name = models.CharField(verbose_name='Название', max_length=1024, null=True)
     name_en = models.CharField(verbose_name='Перевод наименования', max_length=1024, null=True, blank=True)
-    block = models.ForeignKey(Block, on_delete=models.CASCADE, related_name='contents')
+    block = models.ForeignKey(Block, on_delete=models.CASCADE, verbose_name='Блок',related_name='contents')
     file = models.ManyToManyField(ContFile, verbose_name='Изображение', blank=True)
     text = models.TextField(verbose_name='Содержимое', null=True, blank=True)
     text_en = models.TextField(verbose_name='Перевод', null=True, blank=True)

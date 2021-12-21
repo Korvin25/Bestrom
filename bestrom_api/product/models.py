@@ -46,7 +46,7 @@ class ProductProperties(models.Model):
 
 class ProductPropertyValue(models.Model):
     product = models.ForeignKey(Product, related_name='ProductPropertyValue', on_delete=models.CASCADE)
-    product_property = models.ForeignKey(ProductProperties, related_name='PropertyValue', on_delete=models.CASCADE)
+    product_property = models.ForeignKey(ProductProperties, related_name='PropertyValue', verbose_name='Харакартеристика', on_delete=models.CASCADE)
     name = models.CharField(max_length=100, verbose_name='Значение характеристики', null=True)
     name_en = models.CharField(max_length=100, verbose_name='Перевод', null=True)
 
@@ -164,7 +164,7 @@ class Packet(models.Model):
     name_en = models.CharField(max_length=100, verbose_name='Перевод', null=True)
     product = models.ManyToManyField(Product, related_name='Packet', verbose_name='Товар')
     img = models.ImageField(upload_to='product/files/packet', verbose_name='Изображение')
-    drawing = models.ImageField(upload_to='product/files/packet/drawing', verbose_name='Изображение')
+    drawing = models.ImageField(upload_to='product/files/packet/drawing', verbose_name='Чертеж')
     alt = models.CharField(max_length=100, verbose_name='Тэг alt', null=True, blank=True)
 
     def __str__(self):

@@ -25,12 +25,16 @@ class MyAdminSite(AdminSite):
         return app_list
 
 
+class ContentAdmin(admin.ModelAdmin):
+    list_display = ('name', 'block')
+    list_filter = ('block',)
+
+
 admin.site = MyAdminSite()
 # Register your models here.
 admin.site.register(models.Page)
 admin.site.register(models.Block)
-admin.site.register(models.Content)
-admin.site.register(models.ContFile)
+admin.site.register(models.Content, ContentAdmin)
 admin.site.register(models.News)
 admin.site.register(models.Partner)
 admin.site.register(models.Client)
