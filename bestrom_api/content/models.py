@@ -1,5 +1,5 @@
 import datetime
-from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 from django.db import models
 
 
@@ -61,8 +61,8 @@ class Content(models.Model):
 class Partner(models.Model):
     name = models.CharField(max_length=100, verbose_name='Наименование партнера', null=True)
     logo = models.ImageField(upload_to='content/files/partner', verbose_name='Логотип', null=True, blank=True)
-    description = RichTextField(verbose_name='Описание', null=True, blank=True)
-    description_en = RichTextField(verbose_name='Перевод', null=True, blank=True)
+    description = RichTextUploadingField(verbose_name='Описание', null=True, blank=True)
+    description_en = RichTextUploadingField(verbose_name='Перевод', null=True, blank=True)
     alt = models.CharField(max_length=100, verbose_name='Тэг alt', null=True, blank=True)
 
     def __str__(self):
@@ -76,8 +76,8 @@ class Partner(models.Model):
 class Client(models.Model):
     name = models.CharField(max_length=100, verbose_name='Наименование клиента', null=True)
     logo = models.ImageField(upload_to='content/files/clients', verbose_name='Логотип', null=True, blank=True)
-    description = RichTextField(verbose_name='Описание', null=True, blank=True)
-    description_en = RichTextField(verbose_name='Перевод', null=True, blank=True)
+    description = RichTextUploadingField(verbose_name='Описание', null=True, blank=True)
+    description_en = RichTextUploadingField(verbose_name='Перевод', null=True, blank=True)
     alt = models.CharField(max_length=100, verbose_name='Тэг alt', null=True, blank=True)
 
     def __str__(self):
@@ -93,10 +93,10 @@ class News(models.Model):
     name_en = models.CharField(max_length=256, verbose_name='Перевод заголовка', null=True)
     img = models.ImageField(upload_to='content/files/partner', verbose_name='Изображение', null=True, blank=True)
     alt = models.CharField(max_length=100, verbose_name='Тэг alt', null=True, unique=True)
-    mini_description = RichTextField(verbose_name='Краткое содержание', null=True, blank=True)
-    mini_description_en = RichTextField(verbose_name='Перевод содержания', null=True, blank=True)
-    description = RichTextField(verbose_name='Текст', null=True, blank=True)
-    description_en = RichTextField(verbose_name='Перевод текста', null=True, blank=True)
+    mini_description = RichTextUploadingField(verbose_name='Краткое содержание', null=True, blank=True)
+    mini_description_en = RichTextUploadingField(verbose_name='Перевод содержания', null=True, blank=True)
+    description = RichTextUploadingField(verbose_name='Текст', null=True, blank=True)
+    description_en = RichTextUploadingField(verbose_name='Перевод текста', null=True, blank=True)
     published = models.DateTimeField(default=datetime.datetime.now(), verbose_name='Время публикации')
 
     def __str__(self):
@@ -111,12 +111,12 @@ class Vacancy(models.Model):
     name = models.CharField(max_length=256, verbose_name='Наименование вакансии', null=True)
     img = models.ImageField(upload_to='content/files/vacancy', verbose_name='Изображение', null=True, blank=True)
     alt = models.CharField(max_length=100, verbose_name='Тэг alt', null=True, unique=True)
-    requirements = RichTextField(verbose_name='Требования', blank=True, null=True)
-    skills = RichTextField(verbose_name='Навыки', blank=True, null=True)
+    requirements = RichTextUploadingField(verbose_name='Требования', blank=True, null=True)
+    skills = RichTextUploadingField(verbose_name='Навыки', blank=True, null=True)
     salary = models.CharField(max_length=100, verbose_name='Зарплата', blank=True, null=True)
     education = models.CharField(max_length=100, verbose_name='Образование', blank=True, null=True)
     experience = models.CharField(max_length=100, verbose_name='Опыт работы', blank=True, null=True)
-    youget = RichTextField(verbose_name='Вы получаете', blank=True, null=True)
+    youget = RichTextUploadingField(verbose_name='Вы получаете', blank=True, null=True)
     rus_ver = models.BooleanField(verbose_name='Русская версия', default=True)
 
     def __str__(self):
