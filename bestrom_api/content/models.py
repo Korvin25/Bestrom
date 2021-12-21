@@ -19,8 +19,8 @@ class Page(models.Model):
 
 
 class Block(models.Model):
+    verbose_name = models.CharField(verbose_name='Наименование для панели админа', max_length=256, null=True)
     name = models.CharField(verbose_name='Наименование блока', max_length=256, null=True)
-    verbose_name=models.CharField(verbose_name='Наименование для панели админа', max_length=256, null=True, default=name)
     page = models.ForeignKey(Page, on_delete=models.CASCADE, related_name='blocks')
 
     def __str__(self):
