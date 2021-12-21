@@ -20,10 +20,11 @@ class Page(models.Model):
 
 class Block(models.Model):
     name = models.CharField(verbose_name='Наименование блока', max_length=256, null=True)
+    verbose_name=models.CharField(verbose_name='Наименование для панели админа', max_length=256, null=True, default=name)
     page = models.ForeignKey(Page, on_delete=models.CASCADE, related_name='blocks')
 
     def __str__(self):
-        return str(self.page.title) + ' ' + str(self.name)
+        return str(self.page.title) + ' ' + str(self.verbose_name)
 
     class Meta:
         verbose_name_plural = 'Блоки'
