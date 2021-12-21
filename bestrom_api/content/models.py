@@ -52,7 +52,7 @@ class Content(models.Model):
     text_en = models.TextField(verbose_name='Перевод', null=True, blank=True)
 
     def __str__(self):
-        return str(self.block.page.title) + ' ' + str(self.block.name) + ' ' + str(self.name)
+        return str(self.block.page.title) + ' ' + str(self.block.verbose_name) + ' ' + str(self.name)
 
     class Meta:
         verbose_name_plural = 'Контент'
