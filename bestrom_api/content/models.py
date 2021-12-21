@@ -4,6 +4,7 @@ from django.db import models
 
 
 class Page(models.Model):
+    verbose_name = models.CharField(verbose_name='Наименование для панели админа', max_length=256, null=True)
     title = models.CharField(verbose_name='Title страницы', max_length=256, null=True)
     title_en = models.CharField(verbose_name='Перевод title', max_length=256, null=True)
     description = models.CharField(verbose_name='Description страницы', max_length=512, null=True, blank=True)
@@ -11,7 +12,7 @@ class Page(models.Model):
     keywords = models.CharField(verbose_name='Keywords страницы', max_length=256, null=True, blank=True)
 
     def __str__(self):
-        return self.title
+        return f"{self.verbose_name}"
 
     class Meta:
         verbose_name_plural = 'Страницы'
