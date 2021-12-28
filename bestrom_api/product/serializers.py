@@ -35,7 +35,7 @@ class EquipmentSerializer(serializers.ModelSerializer):
     SliderProd = SliderSerializer(many=True)
     class Meta:
         model = Product
-        fields = '__all__'
+        fields = ('id', 'SliderProd', 'name', 'name_en')
 
 
 class DocSerializer(serializers.ModelSerializer):
@@ -101,11 +101,10 @@ class DetailProductSerializer(serializers.ModelSerializer):
     SliderProd = SliderSerializer(many=True)
     Items = ItemSerializer(many=True)
     Docs = DocSerializer(many=True)
-    Equipment = EquipmentSerializer(many=True)
+    equipments = EquipmentSerializer(many=True)
     Solution = SolutionSerializer(many=True)
     Packet = PacketSerializer(many=True)
 
     class Meta:
-        depth = 1
         model = Product
         fields = '__all__'
