@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
 from .models import *
+from content.models import Client
 
 
 # для списка товаров
@@ -33,6 +34,7 @@ class SliderSerializer(serializers.ModelSerializer):
 
 class EquipmentSerializer(serializers.ModelSerializer):
     SliderProd = SliderSerializer(many=True)
+
     class Meta:
         model = Product
         fields = ('id', 'SliderProd', 'name', 'name_en')
@@ -96,6 +98,12 @@ class PacketSeamSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class ClientSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Client
+        fields = '__all__'
+
+
 class DetailProductSerializer(serializers.ModelSerializer):
     ProductPropertyValue = PropertyValueSerializer(many=True)
     SliderProd = SliderSerializer(many=True)
@@ -104,6 +112,7 @@ class DetailProductSerializer(serializers.ModelSerializer):
     equipments = EquipmentSerializer(many=True)
     Solution = SolutionSerializer(many=True)
     Packet = PacketSerializer(many=True)
+    clients = ClientSerializer(many=True)
 
     class Meta:
         model = Product
