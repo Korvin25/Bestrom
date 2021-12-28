@@ -32,9 +32,10 @@ class SliderSerializer(serializers.ModelSerializer):
 
 
 class EquipmentSerializer(serializers.ModelSerializer):
+    SliderProd = SliderSerializer(many=True)
     class Meta:
-        model = Equipment
-        exclude = ('product',)
+        model = Product
+        fields = '__all__'
 
 
 class DocSerializer(serializers.ModelSerializer):

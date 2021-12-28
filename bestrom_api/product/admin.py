@@ -14,14 +14,6 @@ class PropertyInstanceInline(admin.TabularInline):
     extra = 0
 
 
-class EquipmentInstanceInline(admin.TabularInline):
-    model = models.Product.Equipment.through
-    extra = 0
-
-    verbose_name = u"Доп оборудование"
-    verbose_name_plural = u"Доп оборудование"
-
-
 class SolutionInstanceInline(admin.TabularInline):
     model = models.Solution
     extra = 0
@@ -41,7 +33,7 @@ class ItemsInstanceInline(admin.TabularInline):
 
 
 class ProductAdmin(admin.ModelAdmin):
-    inlines = [PropertyInstanceInline, SliderInstanceInline, ItemsInstanceInline, EquipmentInstanceInline,
+    inlines = [PropertyInstanceInline, SliderInstanceInline, ItemsInstanceInline,
                SolutionInstanceInline, PacketInstanceInline]
 
 

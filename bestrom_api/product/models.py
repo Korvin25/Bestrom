@@ -8,6 +8,7 @@ class Product(models.Model):
     description = RichTextUploadingField(verbose_name='Описание товара', null=True, blank=True)
     description_en = RichTextUploadingField(verbose_name='Перевод', null=True, blank=True)
     clients = models.ManyToManyField(Client, related_name='Product', verbose_name='Клиенты купившие товар', null=True, blank=True)
+    equipments = models.ManyToManyField('Product', related_name='Equipment', verbose_name='Доп оборудование', null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -47,8 +48,8 @@ class ProductProperties(models.Model):
 class ProductPropertyValue(models.Model):
     product = models.ForeignKey(Product, related_name='ProductPropertyValue', on_delete=models.CASCADE)
     product_property = models.ForeignKey(ProductProperties, related_name='PropertyValue', verbose_name='Харакартеристика', on_delete=models.CASCADE)
-    name = models.CharField(max_length=100, verbose_name='Значение характеристики', null=True)
-    name_en = models.CharField(max_length=100, verbose_name='Перевод', null=True)
+    name = models.TextField(max_length=100, verbose_name='Значение характеристики', null=True)
+    name_en = models.TextField(max_length=100, verbose_name='Перевод', null=True)
 
     def __str__(self):
         return str(self.product.name) + ' ' + str(self.product_property.name)
@@ -102,21 +103,6 @@ class ItemsExample(models.Model):
         verbose_name = 'Пример продукта'
 
 
-class Equipment(models.Model):
-    name = models.CharField(max_length=100, verbose_name='Наименование оборудования')
-    name_en = models.CharField(max_length=100, verbose_name='Перевод', null=True)
-    product = models.ManyToManyField(Product, related_name='Equipment', verbose_name='Товар')
-    img = models.ImageField(upload_to='product/files/equipment', verbose_name='Изображение')
-    alt = models.CharField(max_length=100, verbose_name='Тэг alt', null=True, blank=True)
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name_plural = 'Дополнительное оборудование'
-        verbose_name = 'Дополнительное оборудование'
-
-
 class Solution(models.Model):
     name = models.CharField(max_length=100, verbose_name='Наименование решения')
     name_en = models.CharField(max_length=100, verbose_name='Перевод', null=True)
@@ -134,6 +120,7 @@ class Solution(models.Model):
 
 class CategoryFilters(models.Model):
     name = models.CharField(max_length=100, verbose_name='Наименование категории')
+    sort = models.IntegerField(verbose_name='Сортировка', null=True, blank=True)
     name_en = models.CharField(max_length=100, verbose_name='Перевод', null=True)
     img = models.ImageField(verbose_name='Изображение', upload_to='product/files/filters', null=True, blank=True)
 
