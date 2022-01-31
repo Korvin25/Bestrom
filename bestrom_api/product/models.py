@@ -48,8 +48,8 @@ class ProductProperties(models.Model):
 class ProductPropertyValue(models.Model):
     product = models.ForeignKey(Product, related_name='ProductPropertyValue', on_delete=models.CASCADE)
     product_property = models.ForeignKey(ProductProperties, related_name='PropertyValue', verbose_name='Харакартеристика', on_delete=models.CASCADE)
-    name = models.TextField(max_length=100, verbose_name='Значение характеристики', null=True)
-    name_en = models.TextField(max_length=100, verbose_name='Перевод', null=True)
+    name = models.TextField(max_length=1000, verbose_name='Значение характеристики', null=True)
+    name_en = models.TextField(max_length=1000, verbose_name='Перевод', null=True)
 
     def __str__(self):
         return str(self.product.name) + ' ' + str(self.product_property.name)
