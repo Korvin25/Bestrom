@@ -13,8 +13,11 @@ upload/
 *.sqlite3
 /env/*
 /main/touchme
+frontend/
+*.sqlite3
 
 # OS or Editor folders, extensions #
+.vscode
 .idea
 .cache
 .DS_Store
