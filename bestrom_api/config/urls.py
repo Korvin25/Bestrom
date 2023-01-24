@@ -26,7 +26,7 @@ urlpatterns = [
     url(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
     path('admin/', admin.site.urls),
     path('ckeditor/', include('ckeditor_uploader.urls')),
-   #  path('', TemplateView.as_view(template_name='templates/index.html'), name='index'),
+    path('', TemplateView.as_view(template_name='templates/index.html'), name='index'),
     path('', include('content.urls')),
     path('', include('product.urls')),
     path('', include('crm.urls'))
