@@ -17,6 +17,7 @@ frontend/
 var/
 log/
 *.sqlite3
+media/
 
 # OS or Editor folders, extensions #
 .vscode
