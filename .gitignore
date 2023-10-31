@@ -18,6 +18,8 @@ var/
 log/
 *.sqlite3
 media/
+db.sqlite3
+bestrom_api/env/
 
 # OS or Editor folders, extensions #
 .vscode
