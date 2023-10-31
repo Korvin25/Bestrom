@@ -165,6 +165,7 @@ class PacketOptions(models.Model):
     name = models.CharField(max_length=100, verbose_name='Опции пакета')
     name_en = models.CharField(max_length=100, verbose_name='Перевод', null=True)
     packet = models.ManyToManyField(Packet, related_name='Options', verbose_name='Товар')
+    product = models.ManyToManyField(Product, related_name='PacketsOptions', verbose_name='Продукт') 
     img = models.ImageField(upload_to='product/files/packet/options', verbose_name='Изображение')
     alt = models.CharField(max_length=100, verbose_name='Тэг alt', null=True, blank=True)
 

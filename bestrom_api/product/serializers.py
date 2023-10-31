@@ -80,6 +80,12 @@ class CategoryFilterSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class PacketOptionsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PacketOptions
+        fields = '__all__'
+
+
 class PacketSerializer(serializers.ModelSerializer):
     class Meta:
         model = Packet
@@ -112,6 +118,7 @@ class DetailProductSerializer(serializers.ModelSerializer):
     equipments = EquipmentSerializer(many=True)
     Solution = SolutionSerializer(many=True)
     Packet = PacketSerializer(many=True)
+    PacketsOptions = PacketOptionsSerializer(many=True)
     clients = ClientSerializer(many=True)
 
     class Meta:
