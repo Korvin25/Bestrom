@@ -45,6 +45,7 @@ class ContFile(models.Model):
 
 
 class Content(models.Model):
+    active = models.BooleanField('Активный', default=True)
     name = models.CharField(verbose_name='Название', max_length=1024, null=True)
     name_en = models.CharField(verbose_name='Перевод наименования', max_length=1024, null=True, blank=True)
     block = models.ForeignKey(Block, on_delete=models.CASCADE, verbose_name='Блок',related_name='contents')

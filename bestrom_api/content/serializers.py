@@ -38,7 +38,12 @@ class GetContentSerializer(serializers.ModelSerializer):
     class Meta:
         depth = 1
         model = Content
-        exclude = ('block',)
+        exclude = ('block', 'active')
+
+    def to_representation(self, instance):
+        if instance.active:
+            return super().to_representation(instance)
+        return {}
 
 
 class GetBlockSerializer(serializers.ModelSerializer):
@@ -48,6 +53,13 @@ class GetBlockSerializer(serializers.ModelSerializer):
         depth = 1
         model = Block
         exclude = ('page',)
+
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        representation['contents'] = [
+            content for content in representation['contents'] if content
+        ]
+        return representation
 
 
 class GetPageSerializer(serializers.ModelSerializer):

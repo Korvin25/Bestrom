@@ -26,7 +26,7 @@ class MyAdminSite(AdminSite):
 
 
 class ContentAdmin(admin.ModelAdmin):
-    list_display = ('name', 'block')
+    list_display = ('name', 'block', 'active')
     list_filter = ('block',)
 
 
