@@ -9,6 +9,7 @@ class Product(models.Model):
     description_en = RichTextUploadingField(verbose_name='Перевод', null=True, blank=True)
     clients = models.ManyToManyField(Client, related_name='Product', verbose_name='Клиенты купившие товар', null=True, blank=True)
     equipments = models.ManyToManyField('Product', related_name='Equipment', verbose_name='Доп оборудование', null=True, blank=True)
+    order = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return self.name
@@ -16,6 +17,7 @@ class Product(models.Model):
     class Meta:
         verbose_name_plural = 'Товары'
         verbose_name = 'Товар'
+        ordering = ['order']
 
 
 class SliderProd(models.Model):

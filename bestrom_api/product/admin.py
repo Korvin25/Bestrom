@@ -1,3 +1,4 @@
+from adminsortable2.admin import SortableAdminMixin
 from django.contrib import admin
 
 from . import models
@@ -32,7 +33,8 @@ class ItemsInstanceInline(admin.TabularInline):
     verbose_name_plural = u"Продукты"
 
 
-class ProductAdmin(admin.ModelAdmin):
+class ProductAdmin(SortableAdminMixin, admin.ModelAdmin):
+    list_display = ('order', 'name',) 
     inlines = [PropertyInstanceInline, SliderInstanceInline, ItemsInstanceInline,
                SolutionInstanceInline, PacketInstanceInline]
 
