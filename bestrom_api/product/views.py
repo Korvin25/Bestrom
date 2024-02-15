@@ -8,7 +8,7 @@ from . import serializers
 
 class GetListProduct(APIView):
     def get(self, request, format=None):
-        queryset = models.Product.objects.all()
+        queryset = models.Product.objects.filter(active=True)
         serializer = serializers.DetailProductSerializer(queryset, many=True)
         return Response(serializer.data)
 

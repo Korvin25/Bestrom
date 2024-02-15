@@ -3,6 +3,7 @@ from django.db import models
 from content.models import Client
 
 class Product(models.Model):
+    active = models.BooleanField('Показать на сайте', default=True)
     name = models.CharField(max_length=100, verbose_name='Наименование товара', null=True)
     name_en = models.CharField(max_length=100, verbose_name='Перевод наименования', null=True)
     description = RichTextUploadingField(verbose_name='Описание товара', null=True, blank=True)
