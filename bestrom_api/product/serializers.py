@@ -89,11 +89,13 @@ class PacketOptionsSerializer(serializers.ModelSerializer):
 class PacketSerializer(serializers.ModelSerializer):
     class Meta:
         model = Packet
-        exclude = ['active']
+        fields = '__all__'
 
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        return queryset.filter(active=True)
+    def to_representation(self, instance):
+        if instance.active:
+            return super().to_representation(instance)
+        else:
+            return None
 
 class PacketOptionsSerializer(serializers.ModelSerializer):
     class Meta:
