@@ -26,7 +26,7 @@ class GetFilters(generics.ListAPIView):
 
 
 class GetPacket(generics.ListAPIView):
-    queryset = models.Packet.objects.all()
+    queryset = models.Packet.objects.filter(active=True)
     serializer_class = serializers.PacketSerializer
 
 

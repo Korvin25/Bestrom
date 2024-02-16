@@ -150,6 +150,7 @@ class Filters(models.Model):
 
 
 class Packet(models.Model):
+    active = models.BooleanField('Не отображать в раскрое', default=True)
     name = models.CharField(max_length=100, verbose_name='Наименование пакета')
     name_en = models.CharField(max_length=100, verbose_name='Перевод', null=True)
     product = models.ManyToManyField(Product, related_name='Packet', verbose_name='Товар')
