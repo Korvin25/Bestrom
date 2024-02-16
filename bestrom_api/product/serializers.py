@@ -91,6 +91,9 @@ class PacketSerializer(serializers.ModelSerializer):
         model = Packet
         fields = '__all__'
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.filter(active=True)
 
 class PacketOptionsSerializer(serializers.ModelSerializer):
     class Meta:
