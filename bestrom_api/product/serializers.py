@@ -91,11 +91,6 @@ class PacketSerializer(serializers.ModelSerializer):
         model = Packet
         fields = '__all__'
 
-    def to_representation(self, instance):
-        if instance.active:
-            return super().to_representation(instance)
-        else:
-            return {}
 
 class PacketOptionsSerializer(serializers.ModelSerializer):
     class Meta:
