@@ -10,7 +10,7 @@ class SliderInstanceInline(admin.TabularInline):
     extra = 0
 
 
-class PropertyInstanceInline(admin.TabularInline):
+class PropertyInstanceInline(admin.StackedInline):
     model = models.ProductPropertyValue
     extra = 0
 
