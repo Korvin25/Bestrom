@@ -137,6 +137,7 @@ class CategoryFilters(models.Model):
 
 class Filters(models.Model):
     cat = models.ForeignKey(CategoryFilters, verbose_name='Категория', on_delete=models.CASCADE, related_name='Filters')
+    img = models.ImageField(verbose_name='Изображение', upload_to='product/files/filter', null=True, blank=True)
     name = models.CharField(max_length=100, verbose_name='Наименование фильтра', null=True)
     name_en = models.CharField(max_length=100, verbose_name='Перевод', null=True)
     search = models.CharField(max_length=100, verbose_name='Поисковый запрос', null=True)
