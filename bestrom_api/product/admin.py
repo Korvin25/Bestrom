@@ -38,6 +38,14 @@ class ProductAdmin(SortableAdminMixin, admin.ModelAdmin):
     list_display_links = ('name',)
     inlines = [PropertyInstanceInline, SliderInstanceInline, ItemsInstanceInline,
                SolutionInstanceInline, PacketInstanceInline]
+    
+    
+class PacketAdmin(admin.ModelAdmin):
+    list_display = ('name', 'essid') 
+    
+    
+class PacketSeamAdmin(admin.ModelAdmin):
+    list_display = ('name', 'essid') 
 
 
 admin.site.register(models.Product, ProductAdmin)
@@ -51,6 +59,6 @@ admin.site.register(models.ItemsExample)
 # admin.site.register(models.Docs)
 admin.site.register(models.CategoryFilters)
 admin.site.register(models.Filters)
-admin.site.register(models.Packet)
+admin.site.register(models.Packet, PacketAdmin)
 admin.site.register(models.PacketOptions)
-admin.site.register(models.PacketSeam)
+admin.site.register(models.PacketSeam, PacketSeamAdmin)
