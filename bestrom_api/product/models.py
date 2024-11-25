@@ -157,6 +157,7 @@ class Packet(models.Model):
     product = models.ManyToManyField(Product, related_name='Packet', verbose_name='Товар')
     img = models.ImageField(upload_to='product/files/packet', verbose_name='Изображение')
     drawing = models.ImageField(upload_to='product/files/packet/drawing', verbose_name='Чертеж')
+    essid = models.CharField(max_length=10, verbose_name='Идентификатор', blank=True, null=True)
     alt = models.CharField(max_length=100, verbose_name='Тэг alt', null=True, blank=True)
 
     def __str__(self):
@@ -187,6 +188,7 @@ class PacketSeam(models.Model):
     name_en = models.CharField(max_length=100, verbose_name='Перевод', null=True)
     packet = models.ManyToManyField(Packet, related_name='Seam', verbose_name='Товар')
     img = models.ImageField(upload_to='product/files/packet/seam', verbose_name='Изображение')
+    essid = models.CharField(max_length=2, verbose_name='Идентификатор', blank=True, null=True)
     alt = models.CharField(max_length=100, verbose_name='Тэг alt', null=True, blank=True)
 
     def __str__(self):
