@@ -41,7 +41,7 @@ class ProductAdmin(SortableAdminMixin, admin.ModelAdmin):
     
     
 class PacketAdmin(admin.ModelAdmin):
-    list_display = ('name', 'essid') 
+    list_display = ('name', 'essid', 'active') 
     
     
 class PacketSeamAdmin(admin.ModelAdmin):
