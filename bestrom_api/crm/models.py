@@ -29,11 +29,15 @@ class Crm_forms(models.Model):
 def add_form(sender, instance, created, **kwargs):
     if created:
         email = EmailMessage(
-            'Заявка ' + str(instance.type) + ' ' + str(datetime.datetime.now()),
-            body=str(instance.name) + ' ' + str(instance.telephone) + ' ' + str(instance.email) + ' ' + str(
-                instance.other),
-            from_email=settings.EMAIL_HOST_USER,
-            to=settings.EMAIL_ADMINS,
+            subject=f'Заявка {instance.type} {datetime.datetime.now()}',  # Тема письма
+            body=f'''
+                Имя: {instance.name}
+                Телефон: {instance.telephone}
+                Email: {instance.email}
+                Дополнительная информация: {instance.other}
+            ''',  # Тело письма
+            from_email=settings.EMAIL_HOST_USER,  # Отправитель
+            to=settings.EMAIL_ADMINS,  # Получатель
         )
         if instance.file:
             email.attach_file(instance.file.path)
