@@ -33,7 +33,7 @@ def add_form(sender, instance, created, **kwargs):
             body=str(instance.name) + ' ' + str(instance.telephone) + ' ' + str(instance.email) + ' ' + str(
                 instance.other),
             from_email=settings.EMAIL_HOST_USER,
-            to=('ivan@adving.ru', 'bexram33@mail.ru'),
+            to=settings.EMAIL_ADMINS,
         )
         if instance.file:
             email.attach_file(instance.file.path)
