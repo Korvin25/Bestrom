@@ -74,18 +74,23 @@ class GetPageSerializer(serializers.ModelSerializer):
 # остальной контент
 
 class GetNewsSerializer(serializers.ModelSerializer):
+    img = serializers.SerializerMethodField()
+    
     class Meta:
         model = News
         fields = '__all__'
 
 
 class GetVacancySerializer(serializers.ModelSerializer):
+    img = serializers.SerializerMethodField()
+    
     class Meta:
         model = Vacancy
         fields = '__all__'
 
 
 class GetClientSerializer(serializers.ModelSerializer):
+    logo = serializers.SerializerMethodField()
     Product = DetailProductSerializer(many=True)
 
     class Meta:
@@ -94,12 +99,16 @@ class GetClientSerializer(serializers.ModelSerializer):
 
 
 class GetPartnerSerializer(serializers.ModelSerializer):
+    logo = serializers.SerializerMethodField()
+    
     class Meta:
         model = Partner
         fields = '__all__'
 
 
 class GetHistorySerializer(serializers.ModelSerializer):
+    img = serializers.SerializerMethodField()
+    
     class Meta:
         model = History
         fields = '__all__'

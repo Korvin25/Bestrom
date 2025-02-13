@@ -27,6 +27,8 @@ class PropertyValueSerializer(serializers.ModelSerializer):
 
 
 class SliderSerializer(serializers.ModelSerializer):
+    img = serializers.SerializerMethodField()
+    
     class Meta:
         model = SliderProd
         exclude = ('product',)
@@ -47,18 +49,23 @@ class DocSerializer(serializers.ModelSerializer):
 
 
 class SolutionSerializer(serializers.ModelSerializer):
+    img = serializers.SerializerMethodField()
+    
     class Meta:
         model = Solution
         exclude = ('product',)
 
 
 class ItemsExampleSerializer(serializers.ModelSerializer):
+    img = serializers.SerializerMethodField()
+    
     class Meta:
         model = ItemsExample
         fields = '__all__'
 
 
 class ItemSerializer(serializers.ModelSerializer):
+    img = serializers.SerializerMethodField()
     ItemsExample = ItemsExampleSerializer(many=True)
 
     class Meta:
@@ -67,12 +74,15 @@ class ItemSerializer(serializers.ModelSerializer):
 
 
 class FilterSerializer(serializers.ModelSerializer):
+    img = serializers.SerializerMethodField()
+    
     class Meta:
         model = Filters
         fields = '__all__'
 
 
 class CategoryFilterSerializer(serializers.ModelSerializer):
+    img = serializers.SerializerMethodField()
     Filters = FilterSerializer(many=True)
 
     class Meta:
@@ -81,24 +91,25 @@ class CategoryFilterSerializer(serializers.ModelSerializer):
 
 
 class PacketOptionsSerializer(serializers.ModelSerializer):
+    img = serializers.SerializerMethodField()
+    
     class Meta:
         model = PacketOptions
         fields = '__all__'
 
 
 class PacketSerializer(serializers.ModelSerializer):
+    img = serializers.SerializerMethodField()
+    drawing = serializers.SerializerMethodField()
+    
     class Meta:
         model = Packet
         fields = '__all__'
 
 
-class PacketOptionsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = PacketOptions
-        fields = '__all__'
-
-
 class PacketSeamSerializer(serializers.ModelSerializer):
+    img = serializers.SerializerMethodField()
+    
     class Meta:
         model = PacketSeam
         fields = '__all__'
