@@ -22,10 +22,10 @@ class FileSerializer(serializers.ModelSerializer):
         model = ContFile
         fields = '__all__'
 
-    def get_file_url(self, file):
-        request = self.context.get('request')
-        file_url = file.photo.url
-        return request.build_absolute_uri(file_url)
+    def get_file_url(self, obj):
+        if obj.file_url:
+            return obj.file_url.url
+        return None
 
 
 class ContentSerializer(serializers.ModelSerializer):
@@ -79,6 +79,12 @@ class GetNewsSerializer(serializers.ModelSerializer):
     class Meta:
         model = News
         fields = '__all__'
+        
+    def get_img(self, obj):
+        if obj.img:
+            return obj.img.url
+        return None
+
 
 
 class GetVacancySerializer(serializers.ModelSerializer):
@@ -87,6 +93,11 @@ class GetVacancySerializer(serializers.ModelSerializer):
     class Meta:
         model = Vacancy
         fields = '__all__'
+        
+    def get_img(self, obj):
+        if obj.img:
+            return obj.img.url
+        return None
 
 
 class GetClientSerializer(serializers.ModelSerializer):
@@ -97,6 +108,10 @@ class GetClientSerializer(serializers.ModelSerializer):
         model = Client
         fields = '__all__'
 
+    def get_logo(self, obj):
+        if obj.logo:
+            return obj.logo.url
+        return None
 
 class GetPartnerSerializer(serializers.ModelSerializer):
     logo = serializers.SerializerMethodField()
@@ -104,6 +119,11 @@ class GetPartnerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Partner
         fields = '__all__'
+    
+    def get_logo(self, obj):
+        if obj.logo:
+            return obj.logo.url
+        return None
 
 
 class GetHistorySerializer(serializers.ModelSerializer):
@@ -112,3 +132,8 @@ class GetHistorySerializer(serializers.ModelSerializer):
     class Meta:
         model = History
         fields = '__all__'
+
+    def get_img(self, obj):
+        if obj.img:
+            return obj.img.url
+        return None

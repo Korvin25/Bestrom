@@ -32,6 +32,11 @@ class SliderSerializer(serializers.ModelSerializer):
     class Meta:
         model = SliderProd
         exclude = ('product',)
+    
+    def get_img(self, obj):
+        if obj.img:
+            return obj.img.url
+        return None
 
 
 class EquipmentSerializer(serializers.ModelSerializer):
@@ -54,6 +59,11 @@ class SolutionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Solution
         exclude = ('product',)
+    
+    def get_img(self, obj):
+        if obj.img:
+            return obj.img.url
+        return None
 
 
 class ItemsExampleSerializer(serializers.ModelSerializer):
@@ -71,6 +81,11 @@ class ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Items
         exclude = ('product',)
+        
+    def get_img(self, obj):
+        if obj.img:
+            return obj.img.url
+        return None
 
 
 class FilterSerializer(serializers.ModelSerializer):
@@ -79,6 +94,11 @@ class FilterSerializer(serializers.ModelSerializer):
     class Meta:
         model = Filters
         fields = '__all__'
+
+    def get_img(self, obj):
+        if obj.img:
+            return obj.img.url
+        return None
 
 
 class CategoryFilterSerializer(serializers.ModelSerializer):
@@ -89,6 +109,11 @@ class CategoryFilterSerializer(serializers.ModelSerializer):
         model = CategoryFilters
         fields = '__all__'
 
+    def get_img(self, obj):
+        if obj.img:
+            return obj.img.url
+        return None
+
 
 class PacketOptionsSerializer(serializers.ModelSerializer):
     img = serializers.SerializerMethodField()
@@ -96,6 +121,11 @@ class PacketOptionsSerializer(serializers.ModelSerializer):
     class Meta:
         model = PacketOptions
         fields = '__all__'
+        
+    def get_img(self, obj):
+        if obj.img:
+            return obj.img.url
+        return None
 
 
 class PacketSerializer(serializers.ModelSerializer):
@@ -105,6 +135,16 @@ class PacketSerializer(serializers.ModelSerializer):
     class Meta:
         model = Packet
         fields = '__all__'
+        
+    def get_img(self, obj):
+        if obj.img:
+            return obj.img.url
+        return None
+    
+    def get_drawing(self, obj):
+        if obj.drawing:
+            return obj.drawing.url
+        return None
 
 
 class PacketSeamSerializer(serializers.ModelSerializer):
@@ -113,13 +153,24 @@ class PacketSeamSerializer(serializers.ModelSerializer):
     class Meta:
         model = PacketSeam
         fields = '__all__'
+        
+    def get_img(self, obj):
+        if obj.img:
+            return obj.img.url
+        return None
 
 
 class ClientSerializer(serializers.ModelSerializer):
+    logo = serializers.SerializerMethodField()
+    
     class Meta:
         model = Client
         fields = '__all__'
 
+    def get_logo(self, obj):
+        if obj.logo:
+            return obj.logo.url
+        return None
 
 class DetailProductSerializer(serializers.ModelSerializer):
     ProductPropertyValue = PropertyValueSerializer(many=True)
