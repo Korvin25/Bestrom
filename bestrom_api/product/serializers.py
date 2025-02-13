@@ -72,6 +72,11 @@ class ItemsExampleSerializer(serializers.ModelSerializer):
     class Meta:
         model = ItemsExample
         fields = '__all__'
+        
+    def get_img(self, obj):
+        if obj.img:
+            return obj.img.url
+        return None
 
 
 class ItemSerializer(serializers.ModelSerializer):
