@@ -165,12 +165,14 @@ LOGGING = {
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.yandex.ru'
-EMAIL_HOST_USER = 'nomer@adving.ru'
-EMAIL_HOST_PASSWORD = 'rLS$LdinYAA('
+EMAIL_HOST = 'mail.nic.ru'
+EMAIL_HOST_USER = 'info@bestrom.ru'
+EMAIL_HOST_PASSWORD = '1rLS$LdinYAA('
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 SERVER_EMAIL = EMAIL_HOST_USER
+EMAIL_ADMINS = ['ivan@adving.ru', 'bexram33@mail.ru']
