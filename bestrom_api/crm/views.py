@@ -1,11 +1,21 @@
 from rest_framework import generics
 from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
 from .models import Crm_forms
 from .serializers import CrmFormsSerializer
 from django.http import JsonResponse, HttpResponse
 from .models import Crm_forms
 import json
 
+# @method_decorator(csrf_exempt, name='dispatch')
+# class FormsList(generics.ListCreateAPIView):
+#     queryset = Crm_forms.objects.all()
+#     serializer_class = CrmFormsSerializer
+
+# @method_decorator(csrf_exempt, name='dispatch')
+# class FormsDetail(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = Crm_forms.objects.all()
+#     serializer_class = CrmFormsSerializer
 
 @csrf_exempt
 def forms_list(request):
@@ -28,15 +38,20 @@ def forms_list(request):
 
     elif request.method == 'POST':
         try:
-            data = json.loads(request.body)
-            form = Crm_forms.objects.create(
+            data = request.POST
+            file = request.FILES.get('file', None)
+            form = Crm_forms(
                 type=data.get('type'),
                 telephone=data.get('telephone'),
                 email=data.get('email'),
                 name=data.get('name'),
                 other=data.get('other'),
-                file=data.get('file'),
             )
+            if file:
+                form.file = file
+
+            form.save()
+            
             return JsonResponse({
                 'id': form.id,
                 'dateapp': form.dateapp,
