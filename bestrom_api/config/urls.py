@@ -2,6 +2,7 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.urls import include, path
 from django.views.generic import TemplateView
+from django.views.generic.base import RedirectView
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 from rest_framework import permissions
@@ -28,5 +29,7 @@ urlpatterns = [
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('api/', include('content.urls')),
     path('api/', include('product.urls')),
-    path('api/', include('crm.urls'))
+    path('api/', include('crm.urls')),
+    
+    path('service/raskroy-paketov/', RedirectView.as_view(url='/cutting', permanent=True)),
 ]
