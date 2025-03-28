@@ -123,6 +123,7 @@ class Solution(models.Model):
 
 class CategoryFilters(models.Model):
     name = models.CharField(max_length=100, verbose_name='Наименование категории')
+    slug = models.SlugField(max_length=256, verbose_name='URL', null=True, unique=True)
     sort = models.IntegerField(verbose_name='Сортировка', null=True, blank=True)
     name_en = models.CharField(max_length=100, verbose_name='Перевод', null=True)
     img = models.ImageField(verbose_name='Изображение', upload_to='product/files/filters', null=True, blank=True)
@@ -139,6 +140,7 @@ class Filters(models.Model):
     cat = models.ForeignKey(CategoryFilters, verbose_name='Категория', on_delete=models.CASCADE, related_name='Filters')
     img = models.ImageField(verbose_name='Изображение', upload_to='product/files/filter', null=True, blank=True)
     name = models.CharField(max_length=100, verbose_name='Наименование фильтра', null=True)
+    slug = models.SlugField(max_length=256, verbose_name='URL', null=True, unique=True)
     name_en = models.CharField(max_length=100, verbose_name='Перевод', null=True)
     search = models.CharField(max_length=100, verbose_name='Поисковый запрос', null=True)
 

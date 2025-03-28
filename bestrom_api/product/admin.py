@@ -48,6 +48,16 @@ class PacketSeamAdmin(admin.ModelAdmin):
     list_display = ('name', 'essid') 
 
 
+class CategoryFiltersAdmin(admin.ModelAdmin):
+    list_display = ('name', 'slug',)
+    prepopulated_fields = {'slug': ('name',)}
+    
+    
+class FiltersAdmin(admin.ModelAdmin):
+    list_display = ('name', 'slug',)
+    prepopulated_fields = {'slug': ('name',)}
+
+
 admin.site.register(models.Product, ProductAdmin)
 #admin.site.register(models.SliderProd)
 admin.site.register(models.ProductProperties)
@@ -57,8 +67,8 @@ admin.site.register(models.ItemsExample)
 # admin.site.register(models.Equipment)
 # admin.site.register(models.Solution)
 # admin.site.register(models.Docs)
-admin.site.register(models.CategoryFilters)
-admin.site.register(models.Filters)
+admin.site.register(models.CategoryFilters, CategoryFiltersAdmin)
+admin.site.register(models.Filters, FiltersAdmin)
 admin.site.register(models.Packet, PacketAdmin)
 admin.site.register(models.PacketOptions)
 admin.site.register(models.PacketSeam, PacketSeamAdmin)
