@@ -34,8 +34,9 @@ class ItemsInstanceInline(admin.TabularInline):
 
 
 class ProductAdmin(SortableAdminMixin, admin.ModelAdmin):
-    list_display = ('order', 'name', 'active') 
+    list_display = ('order', 'name', 'slug', 'active') 
     list_display_links = ('name',)
+    prepopulated_fields = {'slug': ('name',)}
     inlines = [PropertyInstanceInline, SliderInstanceInline, ItemsInstanceInline,
                SolutionInstanceInline, PacketInstanceInline]
     

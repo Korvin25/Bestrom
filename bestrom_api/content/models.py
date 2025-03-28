@@ -101,6 +101,10 @@ class News(models.Model):
     description = RichTextUploadingField(verbose_name='Текст', null=True, blank=True)
     description_en = RichTextUploadingField(verbose_name='Перевод текста', null=True, blank=True)
     published = models.DateTimeField(default=datetime.datetime.now(), verbose_name='Время публикации')
+    seo_title = models.CharField('Тайтл SEO', max_length=300, blank=True)
+    seo_description = models.CharField('Описание SEO', max_length=300, blank=True)
+    seo_title_en = models.CharField('Перевод(Тайтл SEO)', max_length=300, blank=True)
+    seo_description_en = models.CharField('Перевод(Описание SEO)', max_length=300, blank=True)
 
     def __str__(self):
         return self.name

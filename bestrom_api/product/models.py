@@ -5,12 +5,17 @@ from content.models import Client
 class Product(models.Model):
     active = models.BooleanField('Показать на сайте', default=True)
     name = models.CharField(max_length=100, verbose_name='Наименование товара', null=True)
-    name_en = models.CharField(max_length=100, verbose_name='Перевод наименования', null=True)
+    slug = models.SlugField(max_length=256, verbose_name='URL', null=True, unique=True)
+    name_en = models.CharField(max_length=100, verbose_name='Перевод(Наименование товара)', null=True)
     description = RichTextUploadingField(verbose_name='Описание товара', null=True, blank=True)
-    description_en = RichTextUploadingField(verbose_name='Перевод', null=True, blank=True)
+    description_en = RichTextUploadingField(verbose_name='Перевод(Описание товара)', null=True, blank=True)
     clients = models.ManyToManyField(Client, related_name='Product', verbose_name='Клиенты купившие товар', null=True, blank=True)
     equipments = models.ManyToManyField('Product', related_name='Equipment', verbose_name='Доп оборудование', null=True, blank=True)
     order = models.PositiveIntegerField(default=0)
+    seo_title = models.CharField('Тайтл SEO', max_length=300, blank=True)
+    seo_description = models.CharField('Описание SEO', max_length=300, blank=True)
+    seo_title_en = models.CharField('Перевод(Тайтл SEO)', max_length=300, blank=True)
+    seo_description_en = models.CharField('Перевод(Описание SEO)', max_length=300, blank=True)
 
     def __str__(self):
         return self.name
@@ -143,6 +148,10 @@ class Filters(models.Model):
     slug = models.SlugField(max_length=256, verbose_name='URL', null=True, unique=True)
     name_en = models.CharField(max_length=100, verbose_name='Перевод', null=True)
     search = models.CharField(max_length=100, verbose_name='Поисковый запрос', null=True)
+    seo_title = models.CharField('Тайтл SEO', max_length=300, blank=True)
+    seo_description = models.CharField('Описание SEO', max_length=300, blank=True)
+    seo_title_en = models.CharField('Перевод(Тайтл SEO)', max_length=300, blank=True)
+    seo_description_en = models.CharField('Перевод(Описание SEO)', max_length=300, blank=True)
 
     def __str__(self):
         return self.name
