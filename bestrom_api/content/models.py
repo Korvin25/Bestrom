@@ -95,7 +95,7 @@ class News(models.Model):
     name = models.CharField(max_length=256, verbose_name='Заголовок новости', null=True)
     name_en = models.CharField(max_length=256, verbose_name='Перевод заголовка', null=True)
     img = models.ImageField(upload_to='content/files/partner', verbose_name='Изображение', null=True, blank=True)
-    alt = models.CharField(max_length=100, verbose_name='Тэг alt', null=True, unique=True)
+    slug = models.SlugField(max_length=256, verbose_name='URL', null=True, unique=True)
     mini_description = RichTextUploadingField(verbose_name='Краткое содержание', null=True, blank=True)
     mini_description_en = RichTextUploadingField(verbose_name='Перевод содержания', null=True, blank=True)
     description = RichTextUploadingField(verbose_name='Текст', null=True, blank=True)

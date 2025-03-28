@@ -34,13 +34,18 @@ class ContFileAdmin(admin.ModelAdmin):
     list_display = ('alt', 'file')
 
 
+class NewsAdmin(admin.ModelAdmin):
+    list_display = ('name', 'slug', 'published',)
+    prepopulated_fields = {'slug': ('name',)}
+
+
 admin.site = MyAdminSite()
 # Register your models here.
 admin.site.register(models.Page)
 admin.site.register(models.Block)
 admin.site.register(models.Content, ContentAdmin)
 admin.site.register(models.ContFile, ContFileAdmin)
-admin.site.register(models.News)
+admin.site.register(models.News, NewsAdmin)
 admin.site.register(models.Partner)
 admin.site.register(models.Client)
 admin.site.register(models.Vacancy)
