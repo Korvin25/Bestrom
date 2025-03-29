@@ -19,12 +19,13 @@ schema_view = get_schema_view(
 
 
 urlpatterns = [
-    path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
-    path(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-    path(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
-    path('admin/', admin.site.urls),
-    path('ckeditor/', include('ckeditor_uploader.urls')),
-    path('api/', include('content.urls')),
-    path('api/', include('product.urls')),
-    path('api/', include('crm.urls')),
+   path('swagger.json', schema_view.without_ui(cache_timeout=0), name='schema-json'),
+   path('swagger.yaml', schema_view.without_ui(cache_timeout=0), name='schema-yaml'),
+   path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+   path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+   path('admin/', admin.site.urls),
+   path('ckeditor/', include('ckeditor_uploader.urls')),
+   path('api/', include('content.urls')),
+   path('api/', include('product.urls')),
+   path('api/', include('crm.urls')),
 ]

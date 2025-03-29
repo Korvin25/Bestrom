@@ -176,8 +176,16 @@ class ClientSerializer(serializers.ModelSerializer):
         if obj.logo:
             return obj.logo.url
         return None
+    
+
+class CategoryFiltersSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Filters
+        fields = ('slug', )
+        
 
 class DetailProductSerializer(serializers.ModelSerializer):
+    category_filters = CategoryFiltersSerializer(many=True)
     ProductPropertyValue = PropertyValueSerializer(many=True)
     SliderProd = SliderSerializer(many=True)
     Items = ItemSerializer(many=True)

@@ -10,6 +10,7 @@ class Product(models.Model):
     description = RichTextUploadingField(verbose_name='Описание товара', null=True, blank=True)
     description_en = RichTextUploadingField(verbose_name='Перевод(Описание товара)', null=True, blank=True)
     clients = models.ManyToManyField(Client, related_name='Product', verbose_name='Клиенты купившие товар', null=True, blank=True)
+    category_filters = models.ManyToManyField('Filters', verbose_name='Фильтры(Категории)', related_name='Product', null=True, blank=True)
     equipments = models.ManyToManyField('Product', related_name='Equipment', verbose_name='Доп оборудование', null=True, blank=True)
     order = models.PositiveIntegerField(default=0)
     seo_title = models.CharField('Тайтл SEO', max_length=300, blank=True)
@@ -157,8 +158,8 @@ class Filters(models.Model):
         return self.name
 
     class Meta:
-        verbose_name_plural = 'Фильтры'
-        verbose_name = 'Фильтр'
+        verbose_name_plural = 'Фильтры(Категории)'
+        verbose_name = 'Фильтр(Категория)'
 
 
 class Packet(models.Model):
